@@ -9,12 +9,11 @@ html {
 
 body {
   min-width: 320px;
-  background: var(--c-blue-5);
   font-family: var(--ff-sans-serif-2);
   font-weight: var(--font-weight-base);
   line-height: var(--line-height-base);
-  background-color: var(--c-gray-1);
-  color: var(--c-white);
+  background-color: var(--c-white);
+  color: var(--c-black);
 }
 
 a {
@@ -85,7 +84,7 @@ dl,
 hr,
 table,
 blockquote {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   margin-bottom: var(#{var(--line-height-base)}em);
 }
 
