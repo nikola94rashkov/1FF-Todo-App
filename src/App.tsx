@@ -1,1 +1,3 @@
-export const App = () => <h1>App</h1>;
+import { Home } from './layouts';
+
+export const App = () => <Home />;
