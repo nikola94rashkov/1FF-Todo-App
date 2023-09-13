@@ -1,5 +1,6 @@
-@import 'reset';
-@import 'variables';
+@import './reset';
+@import './variables';
+@import './shell';
 
 html {
   font-size: var(--font-size-base);
