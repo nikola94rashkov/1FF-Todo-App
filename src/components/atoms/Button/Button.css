@@ -1,8 +1,0 @@
-.button {
-  padding: var(--spacing-4);
-
-  &:hover {
-    background-color: var(--c-red-1);
-    color: var(--c-white);
-  }
-}

@@ -1,0 +1,14 @@
+@import 'styles/variables.scss';
+
+.button {
+  all: unset;
+  padding: var(--spacing-button);
+  color: var(--c-white);
+  background-color: var(--c-gray-1);
+  transition: var(--t-duration);
+  border-radius: 10px;
+
+  &:hover {
+    background-color: var(--c-red-1);
+  }
+}

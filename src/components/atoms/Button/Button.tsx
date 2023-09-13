@@ -3,10 +3,11 @@ import './Button.scss';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  className?: string;
 }
 
-export const Button: FC<IButton> = ({ children, ...rest }) => (
-  <button className="button" {...rest}>
+export const Button: FC<IButton> = ({ children, className, ...rest }) => (
+  <button className={`button ${className}`} {...rest}>
     {children}
   </button>
 );
