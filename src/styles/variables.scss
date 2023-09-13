@@ -1,0 +1,33 @@
+@import 'fonts';
+
+:root {
+  /* Font parameters */
+  --font-size-base: 62.5%;
+  --font-weight-base: 400;
+  --line-height-base: 1.2;
+
+  /* Fonts */
+  --ff-sans-serif-1: 'Bebas Neue', sans-serif;
+  --ff-sans-serif-2: 'Helvetica Neue', sans-serif;
+
+  /* Shell width and gutters */
+  --shell-max-width: 1140px;
+  --shell-gutter: 30px;
+
+  /* Colors */
+  --c-black: #000;
+  --c-white: #fff;
+  --c-red-1: #e50914;
+  --c-red-2: #b00710;
+  --c-gray-1: #303030;
+
+  /* Shadow */
+  --shadow-primary: 0px 0px 12px rgba(28, 43, 51, 0.1);
+
+  /* Spacings */
+  --spacing-0: 0;
+  --spacing-1: 20px 0;
+  --spacing-2: 10px;
+  --spacing-3: 40px 30px;
+  --spacing-4: 20px 30px;
+}

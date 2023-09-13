@@ -1,0 +1,14 @@
+/* Form */
+
+.form {
+  max-width: 500px;
+  margin: 0 auto;
+
+  .form__row {
+    margin-bottom: var(--spacing-2);
+
+    &:last-child {
+      margin-bottom: var(--spacing-0);
+    }
+  }
+}
