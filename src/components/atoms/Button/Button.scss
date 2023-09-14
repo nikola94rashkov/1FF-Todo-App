@@ -8,6 +8,14 @@
   transition: var(--t-duration);
   border-radius: 10px;
 
+  &--green {
+    background-color: var(--c-green);
+  }
+
+  &--blue {
+    background-color: var(--c-blue);
+  }
+
   &:hover {
     background-color: var(--c-red-1);
   }
