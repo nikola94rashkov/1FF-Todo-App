@@ -1,0 +1,30 @@
+.form__row {
+  margin-bottom: 20px;
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+
+  input {
+    display: block;
+    border: 1px solid var(--c-gray-1);
+    height: 40px;
+    border-radius: 10px;
+    min-width: 150px;
+    padding: 10px 20px;
+
+    :is([type='text'], [type='date']) {
+      width: 100%;
+    }
+
+    [type='checkbox'] {
+    }
+  }
+}
