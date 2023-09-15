@@ -21,6 +21,17 @@ const reducer = (state: Todo, action: Action): Todo => {
         ...state,
         tasks: state.tasks.map((task) => (task.id === action.payload.id ? action.payload : task)),
       };
+    case 'TOGGLE_TASK_COMPLETE':
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === action.payload.id) {
+            return { ...task, completed: !task.completed };
+          } else {
+            return task;
+          }
+        }),
+      };
     case 'DELETE_TASK':
       return {
         ...state,
@@ -34,7 +45,7 @@ const reducer = (state: Todo, action: Action): Todo => {
     case 'SET_TITLE':
       return {
         ...state,
-        title: 'bbgurl',
+        title: '',
       };
     case 'SET_STATE':
       return action.payload;
