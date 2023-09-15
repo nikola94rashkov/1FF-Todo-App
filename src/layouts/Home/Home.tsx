@@ -1,3 +1,11 @@
+import { FormTodo } from 'components';
+
 export const Home = () => {
-  return <div className="shell">home</div>;
+  return (
+    <section>
+      <div className="shell">
+        <FormTodo />
+      </div>
+    </section>
+  );
 };
