@@ -1,0 +1,7 @@
+form {
+  .form__actions {
+    button + button {
+      margin-left: 10px;
+    }
+  }
+}

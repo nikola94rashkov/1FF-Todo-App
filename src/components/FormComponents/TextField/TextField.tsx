@@ -1,4 +1,5 @@
 import { FC, TextareaHTMLAttributes } from 'react';
+import './TextField.scss';
 
 interface ITextField extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   id: string;
