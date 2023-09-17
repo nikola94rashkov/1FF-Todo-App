@@ -22,6 +22,7 @@ export interface ITodoProvider {
 export type Action =
   | { type: 'ADD_TASK'; payload: Task }
   | { type: 'EDIT_TASK'; payload: Task }
+  | { type: 'TOGGLE_TASK_COMPLETE'; payload: Task }
   | { type: 'DELETE_TASK'; payload: number }
   | { type: 'TOGGLE_COMPLETED'; payload: boolean }
   | { type: 'SET_TITLE'; payload: string }
