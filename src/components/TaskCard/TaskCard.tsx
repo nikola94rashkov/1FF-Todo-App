@@ -1,16 +1,14 @@
-import { Button, Field, Typography } from 'components';
+import { Button, Field, FormTodo, Typography } from 'components';
 import { useTodo } from 'context';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Task } from 'types';
 
 import './TaskCard.scss';
-interface Props {
-  props: Task;
-  onEdit?: () => void;
-}
 
-export const TodoCard: FC<Props> = ({ props, onEdit }) => {
-  const { title, completed, disabled, id, description, deadline } = props;
+export const TodoCard: FC<Task> = (props) => {
+  const { title, completed, disabled, id, description, deadline, createdAt } = props;
+
+  const [isEdditing, setIsEdditing] = useState<boolean>(false);
 
   const { dispatch } = useTodo();
 
@@ -24,6 +22,10 @@ export const TodoCard: FC<Props> = ({ props, onEdit }) => {
     dispatch({ type: 'TOGGLE_TASK_COMPLETE', payload: props });
   };
 
+  const handleEdit = () => {
+    dispatch({ type: 'EDIT_TASK', payload: props });
+  };
+
   return (
     <div className={`card card--${completed ? 'completed' : 'uncompleted'} card--${disabled ? 'disabled' : 'active'}`}>
       <div className="card__head">
@@ -34,7 +36,10 @@ export const TodoCard: FC<Props> = ({ props, onEdit }) => {
 
       <div className="card__actions">
         {isTaskExpiredOrDisabled ? (
-          <Typography type="p">task is expired or disabled</Typography>
+          <>
+            <Typography type="p">task is expired or disabled</Typography>
+            <Typography type="p">{`expired date: ${deadline}`}</Typography>
+          </>
         ) : (
           <Field
             id={String(id)}
@@ -45,10 +50,18 @@ export const TodoCard: FC<Props> = ({ props, onEdit }) => {
           />
         )}
 
-        <Button onClick={onEdit}>Edit</Button>
+        <Button onClick={handleEdit}>Edit</Button>
 
         <Button onClick={handleDelete}>Delete</Button>
       </div>
+
+      {isEdditing ? (
+        <div className="card__form">
+          <FormTodo task={{ id, title, description, completed, disabled, deadline, createdAt }} />
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

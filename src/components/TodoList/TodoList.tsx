@@ -4,11 +4,9 @@ import { useTodo } from 'context';
 export const TodoList = () => {
   const { state } = useTodo();
 
-  console.log('todoList', state);
-
   return (
     <section>
-      <div className="shell">{state?.tasks.map((item) => <TodoCard key={item.id} props={item} />)}</div>
+      <div className="shell">{state?.tasks.map((item) => <TodoCard key={item.id} {...item} />)}</div>
     </section>
   );
 };

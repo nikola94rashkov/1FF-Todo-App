@@ -6,9 +6,10 @@ import './FormTodo.scss';
 
 type Props = {
   task?: Task;
+  onEdit?: () => void;
 };
 
-export const FormTodo: React.FC<Props> = ({ task }) => {
+export const FormTodo: React.FC<Props> = ({ task, onEdit }) => {
   const { dispatch } = useTodo();
 
   const [id, setId] = useState<number>(Date.now());
@@ -32,6 +33,8 @@ export const FormTodo: React.FC<Props> = ({ task }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    console.log('deadline', deadline);
+
     const newTask: Task = {
       id: Date.now(),
       title,
@@ -49,6 +52,10 @@ export const FormTodo: React.FC<Props> = ({ task }) => {
 
     if (task) {
       dispatch({ type: 'EDIT_TASK', payload: EditedTask });
+
+      if (typeof onEdit === 'function') {
+        onEdit();
+      }
     } else {
       dispatch({ type: 'ADD_TASK', payload: newTask });
     }
@@ -74,13 +81,7 @@ export const FormTodo: React.FC<Props> = ({ task }) => {
           required
         />
 
-        <Field
-          type="date"
-          id="deadline"
-          label="Deadline"
-          value={deadline.toISOString().slice(0, 10)}
-          onChange={(e) => setDeadline(new Date(e.target.value))}
-        />
+        <Field type="date" id="deadline" label="Deadline" onChange={(e) => setDeadline(new Date(e.target.value))} />
 
         <Field
           type="checkbox"
