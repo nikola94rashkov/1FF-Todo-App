@@ -83,21 +83,17 @@ export const FormTodo: React.FC<Props> = ({ task, onToggleEditForm }) => {
 
         <Field type="date" id="deadline" label="Deadline" onChange={(e) => setDeadline(new Date(e.target.value))} />
 
-        <Field
-          type="checkbox"
-          id="completed"
-          label="Completed"
-          checked={completed}
-          onChange={(e) => setCompleted(e.target.checked)}
-        />
-
-        <Field
-          type="checkbox"
-          id="disabled"
-          label="Disabled"
-          checked={disabled}
-          onChange={(e) => setDisabled(e.target.checked)}
-        />
+        {!completed ? (
+          <Field
+            type="checkbox"
+            id="disabled"
+            label="Disabled"
+            checked={disabled}
+            onChange={(e) => setDisabled(e.target.checked)}
+          />
+        ) : (
+          ''
+        )}
       </div>
 
       <div className="form__actions">

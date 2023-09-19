@@ -12,24 +12,28 @@ export const TodoCard: FC<Task> = (props) => {
 
   const { dispatch } = useTodo();
 
-  const isTaskExpiredOrDisabled = new Date().getTime() > new Date(deadline).getTime() || disabled;
-
   const onToggleEditForm = (value: boolean) => {
     setToggleEditForm(value);
   };
 
-  const handleDelete = () => {
-    dispatch({ type: 'DELETE_TASK', payload: id });
+  const handleAction = (action: string) => {
+    switch (action) {
+      case 'DELETE_TASK':
+        dispatch({ type: 'DELETE_TASK', payload: id });
+        break;
+      case 'TOGGLE_TASK_COMPLETE':
+        dispatch({ type: 'TOGGLE_TASK_COMPLETE', payload: props });
+        break;
+      case 'EDIT_TASK':
+        setToggleEditForm(true);
+        dispatch({ type: 'EDIT_TASK', payload: props });
+        break;
+      default:
+        console.log('Invalid action');
+    }
   };
 
-  const toggleComplete = () => {
-    dispatch({ type: 'TOGGLE_TASK_COMPLETE', payload: props });
-  };
-
-  const handleEdit = () => {
-    setToggleEditForm(true);
-    dispatch({ type: 'EDIT_TASK', payload: props });
-  };
+  const isTaskExpiredOrDisabled = new Date().getTime() > new Date(deadline).getTime() || disabled;
 
   return (
     <div className={`card card--${completed ? 'completed' : 'uncompleted'} card--${disabled ? 'disabled' : 'active'}`}>
@@ -49,21 +53,15 @@ export const TodoCard: FC<Task> = (props) => {
           <Field
             id={String(id)}
             checked={completed}
-            onChange={toggleComplete}
+            onChange={() => handleAction('TOGGLE_TASK_COMPLETE')}
             type="checkbox"
             label={completed ? 'Uncomplete' : 'Complete'}
           />
         )}
 
-        <Button
-          onClick={() => {
-            handleEdit();
-          }}
-        >
-          Edit
-        </Button>
+        <Button onClick={() => handleAction('EDIT_TASK')}>Edit</Button>
 
-        <Button onClick={handleDelete}>Delete</Button>
+        <Button onClick={() => handleAction('DELETE_TASK')}>Delete</Button>
       </div>
 
       {toggleEditForm ? (
