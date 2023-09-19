@@ -8,11 +8,15 @@ import './TaskCard.scss';
 export const TodoCard: FC<Task> = (props) => {
   const { title, completed, disabled, id, description, deadline, createdAt } = props;
 
-  const [isEdditing, setIsEdditing] = useState<boolean>(false);
+  const [toggleEditForm, setToggleEditForm] = useState<boolean>(false);
 
   const { dispatch } = useTodo();
 
   const isTaskExpiredOrDisabled = new Date().getTime() > new Date(deadline).getTime() || disabled;
+
+  const onToggleEditForm = (value: boolean) => {
+    setToggleEditForm(value);
+  };
 
   const handleDelete = () => {
     dispatch({ type: 'DELETE_TASK', payload: id });
@@ -23,6 +27,7 @@ export const TodoCard: FC<Task> = (props) => {
   };
 
   const handleEdit = () => {
+    setToggleEditForm(true);
     dispatch({ type: 'EDIT_TASK', payload: props });
   };
 
@@ -50,14 +55,23 @@ export const TodoCard: FC<Task> = (props) => {
           />
         )}
 
-        <Button onClick={handleEdit}>Edit</Button>
+        <Button
+          onClick={() => {
+            handleEdit();
+          }}
+        >
+          Edit
+        </Button>
 
         <Button onClick={handleDelete}>Delete</Button>
       </div>
 
-      {isEdditing ? (
+      {toggleEditForm ? (
         <div className="card__form">
-          <FormTodo task={{ id, title, description, completed, disabled, deadline, createdAt }} />
+          <FormTodo
+            task={{ id, title, description, completed, disabled, deadline, createdAt }}
+            onToggleEditForm={onToggleEditForm}
+          />
         </div>
       ) : (
         ''

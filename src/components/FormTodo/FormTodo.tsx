@@ -6,10 +6,10 @@ import './FormTodo.scss';
 
 type Props = {
   task?: Task;
-  onEdit?: () => void;
+  onToggleEditForm?: (val: boolean) => void;
 };
 
-export const FormTodo: React.FC<Props> = ({ task, onEdit }) => {
+export const FormTodo: React.FC<Props> = ({ task, onToggleEditForm }) => {
   const { dispatch } = useTodo();
 
   const [id, setId] = useState<number>(Date.now());
@@ -53,8 +53,8 @@ export const FormTodo: React.FC<Props> = ({ task, onEdit }) => {
     if (task) {
       dispatch({ type: 'EDIT_TASK', payload: EditedTask });
 
-      if (typeof onEdit === 'function') {
-        onEdit();
+      if (typeof onToggleEditForm === 'function') {
+        onToggleEditForm(false);
       }
     } else {
       dispatch({ type: 'ADD_TASK', payload: newTask });
