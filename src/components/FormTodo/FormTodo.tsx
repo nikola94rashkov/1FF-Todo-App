@@ -12,7 +12,7 @@ type Props = {
 export const FormTodo: React.FC<Props> = ({ task, onToggleEditForm }) => {
   const { dispatch } = useTodo();
 
-  const [id, setId] = useState<number>(Date.now());
+  const [id, setId] = useState<number>(Date.now() + 1);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [completed, setCompleted] = useState<boolean>(false);
@@ -81,7 +81,13 @@ export const FormTodo: React.FC<Props> = ({ task, onToggleEditForm }) => {
           required
         />
 
-        <Field type="date" id="deadline" label="Deadline" onChange={(e) => setDeadline(new Date(e.target.value))} />
+        <Field
+          type="date"
+          id="deadline"
+          label="Deadline"
+          hint="The deadline must be at least one day later from now"
+          onChange={(e) => setDeadline(new Date(e.target.value))}
+        />
 
         {!completed ? (
           <Field

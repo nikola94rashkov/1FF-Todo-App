@@ -33,7 +33,8 @@ export const TodoCard: FC<Task> = (props) => {
     }
   };
 
-  const isTaskExpiredOrDisabled = new Date().getTime() > new Date(deadline).getTime() || disabled;
+  const today = new Date().getTime();
+  const isTaskExpiredOrDisabled = today > new Date(deadline).getTime() || disabled;
 
   return (
     <div className={`card card--${completed ? 'completed' : 'uncompleted'} card--${disabled ? 'disabled' : 'active'}`}>
